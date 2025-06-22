@@ -1,4 +1,3 @@
-import React from 'react'
 import "./Footer.scss";
 
 const Footer = () => {
@@ -25,16 +24,14 @@ const Footer = () => {
                 <div className="item">
                     <h1>About</h1>
                     <span>
-                        Welcome to Helene's Shop, your go-to destination for stylish and unique fashion finds!
+                        Welcome to Helene's Shop, your go-to destination for stylish and unique fashion finds!<br />
                         <br />This is a demo e-commerce website showcasing all the trendy clothes Helene loves.
-                        <br />Every item reflects a passion for style, creativity, and individuality.
                     </span>
                 </div>
                 <div className="item">
                     <h1>Contact</h1>
                     <span>
-                        Have questions, suggestions, or just want to say hi?
-                        We'd love to hear from you!
+                        We'd love to hear from you!<br />
                         <br />Email: support@heleneshop.com
                         <br />Location: Stockholm, Sweden
                         <br />Instagram: @helenes.fashion
