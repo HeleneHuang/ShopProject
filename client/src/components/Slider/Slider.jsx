@@ -5,9 +5,9 @@ const Slider = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
 
     const data = [
-        <img src="assets/img/slider01.webp" />,
-        <img src="assets/img/slider02.webp" />,
-        <img src="assets/img/slider03.webp" />,
+        "assets/img/slider01.webp",
+        "assets/img/slider02.webp",
+        "assets/img/slider03.webp",
     ];
 
     const prevSlide = () => {
