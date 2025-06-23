@@ -22,7 +22,7 @@ const Product = () => {
 
     const product = data?.[0];
 
-    console.log("selectedImg =", selectedImg);
+    // console.log("selectedImg =", selectedImg);
 
     return (
         <div className="product">
@@ -58,20 +58,18 @@ const Product = () => {
             </div>
 
                 <div className="right">
-                    <h1>test title</h1>
-                    <span className="price">test price</span>
-                    <p>test sort</p>
+                    <h1>{product?.title}</h1>
+                    <span className="price">${product?.price}</span>
+                    <p>{product?.desc}</p>
                     <div className="quantity">
                         <button
                             onClick={() =>
                                 setQuantity((prev) => (prev === 1 ? 1 : prev - 1))
-                            }
-                        >
-
-                        </button>
+                            }>-</button>
                         {quantity}
                         <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
                     </div>
+
                     <button className="add">
                         <img src="/assets/img/cart0.png" className="icon" /> ADD TO CART
                     </button>
@@ -96,8 +94,9 @@ const Product = () => {
                         <hr />
                         <span>FAQ</span>
                     </div>
-                </div></>)}
-        </div>
+                </div></>)
+            }
+        </div >
     )
 };
 
