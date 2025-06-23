@@ -3,7 +3,7 @@ import "./FeaturedProducts.scss";
 import Card from "../Card/Card";
 // import useFetch from "../../hooks/useFetch";
 
-const FeaturedProducts = () => {
+const FeaturedProducts = ({ type }) => {
 
     const data = [
         {
@@ -43,13 +43,14 @@ const FeaturedProducts = () => {
     return (
         <div className="featuredProducts">
             <div className="top">
-                <h1>products</h1>
+                <h1>{type} products</h1>
                 <p>
                     Discover our hand-picked collection of fashion pieces designed to elevate your everyday style.
                     From timeless essentials to trend-forward favorites, each item is selected with care and passion.
                     Find the look that speaks to you and makes you feel confident, every day.
                 </p>
             </div>
+
             <div className="bottom">
                 {data.map(item =>
                     <Card item={item} key={item.id} />)}

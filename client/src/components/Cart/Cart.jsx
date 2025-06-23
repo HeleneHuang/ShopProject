@@ -1,8 +1,9 @@
-import React from 'react'
+import React from "react";
+
 
 const Cart = () => {
     return (
-        <div>Cart</div>
+        <div className="card">Cart</div>
     )
 }
 
