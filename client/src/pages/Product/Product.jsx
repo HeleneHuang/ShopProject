@@ -75,13 +75,13 @@ const Product = () => {
                         <img src="/assets/img/compare.png" className="icon" /> ADD TO COMPARE
                     </div>
                 </div>
-                <div className="info">
+                <div className="infoTop">
                     <span>Vendor: Polo</span>
                     <span>Product Type: T-Shirt</span>
                     <span>Tag: T-Shirt, Women, Top</span>
                 </div>
                 <hr />
-                <div className="info">
+                <div className="infoBottom">
                     <span>DESCRIPTION</span>
                     <hr />
                     <span>ADDITIONAL INFORMATION</span>
