@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.scss"
 import Cart from "../Cart/Cart";
+import useFetch from "../../hooks/useFetch";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
     // const products = useSelector((state) => state.cart.products);
+
+    const { data: categories } = useFetch('/categories');
 
     return (
         <div className="navbar">
@@ -21,14 +24,13 @@ const Navbar = () => {
                         <span>USD</span>
                         <img src="/assets/img/down.png" />
                     </div>
-                    <div className="item">
-                        <Link className="link" to="/products/1">Women</Link>
-                    </div>
-                    <div className="item">
-                        <Link className="link" to="/products/2">Men</Link>
-                    </div>
-                    <div className="item">
-                        <Link className="link" to="/products/3">Children</Link>
+
+                    <div className="cat">
+                        {categories?.map(cat => (
+                            <Link className="link" to={`/products/${cat.id}`} key={cat.id}>
+                                {cat.title.charAt(0).toUpperCase() + cat.title.slice(1)}
+                            </Link>
+                        ))}
                     </div>
                 </div>
 
