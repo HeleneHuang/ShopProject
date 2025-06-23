@@ -1,10 +1,11 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 // import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Navbar.scss"
+import Cart from "../Cart/Cart";
 
 const Navbar = () => {
-    // const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false)
     // const products = useSelector((state) => state.cart.products);
 
     return (
@@ -53,7 +54,7 @@ const Navbar = () => {
                         <img src="/assets/img/person.png" />
                         <img src="/assets/img/like.png" />
 
-                        <div className="cartIcon">
+                        <div className="cartIcon" onClick={() => setOpen(!open)}>
                             <img src="/assets/img/cart.png" />
                             <span>0</span>
                         </div>
@@ -61,7 +62,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            {/* {open && <Cart />} */}
+            {open && <Cart />}
         </div>
     );
 };
