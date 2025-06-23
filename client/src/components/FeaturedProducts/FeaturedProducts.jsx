@@ -8,7 +8,7 @@ const FeaturedProducts = ({ type }) => {
     const data = [
         {
             id: 1,
-            img: "assets/img/01.webp",
+            img: "/assets/img/01.webp",
             title: "dress",
             isNew: true,
             oldPrice: 16,
@@ -16,7 +16,7 @@ const FeaturedProducts = ({ type }) => {
         },
         {
             id: 2,
-            img: "assets/img/02.webp",
+            img: "/assets/img/02.webp",
             title: "hat",
             isNew: false,
             oldPrice: 26,
@@ -24,7 +24,7 @@ const FeaturedProducts = ({ type }) => {
         },
         {
             id: 3,
-            img: "assets/img/03.webp",
+            img: "/assets/img/03.webp",
             title: "coat",
             isNew: true,
             oldPrice: 54,
@@ -32,7 +32,7 @@ const FeaturedProducts = ({ type }) => {
         },
         {
             id: 4,
-            img: "assets/img/04.webp",
+            img: "/assets/img/04.webp",
             title: "jeans",
             isNew: false,
             oldPrice: 26,

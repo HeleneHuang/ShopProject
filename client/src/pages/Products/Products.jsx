@@ -1,15 +1,15 @@
 import React from "react";
-// import { useState } from "react";
-// import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import List from "../../components/List/List";
 // import useFetch from "../../hooks/useFetch";
 import "./Products.scss";
 
 const Products = () => {
-    // const catId = parseInt(useParams().id);
-    // const [maxPrice, setMaxPrice] = useState(1000);
-    // const [sort, setSort] = useState(null);
-    // const [selectedSubCats, setSelectedSubCats] = useState([]);
+    const catId = parseInt(useParams().id);
+    const [maxPrice, setMaxPrice] = useState(1000);
+    const [sort, setSort] = useState(null);
+    const [selectedSubCats, setSelectedSubCats] = useState([]);
 
     // const { data, loading, error } = useFetch(
     //     `/sub-categories?[filters][categories][id][$eq]=${catId}`
@@ -51,9 +51,9 @@ const Products = () => {
                             type="range"
                             min={0}
                             max={1000}
-                        // onChange={(e) => setMaxPrice(e.target.value)}
+                            onChange={e => setMaxPrice(e.target.value)}
                         />
-                        <span>1000</span>
+                        <span>{maxPrice}</span>
                     </div>
                 </div>
                 <div className="filterItem">
@@ -64,7 +64,7 @@ const Products = () => {
                             id="asc"
                             value="asc"
                             name="price"
-                        // onChange={(e) => setSort("asc")}
+                            onChange={e => setSort("asc")}
                         />
                         <label htmlFor="asc">Price (Lowest first)</label>
                     </div>
@@ -74,7 +74,7 @@ const Products = () => {
                             id="desc"
                             value="desc"
                             name="price"
-                        // onChange={(e) => setSort("desc")}
+                            onChange={e => setSort("desc")}
                         />
                         <label htmlFor="desc">Price (Highest first)</label>
                     </div>
@@ -84,10 +84,9 @@ const Products = () => {
             <div className="right">
                 <img
                     className="catImg"
-                    src="assets/img/cart.webp"
-                    alt=""
+                    src="/assets/img/09.webp"
                 />
-                {/* <List catId={catId} maxPrice={maxPrice} sort={sort} subCats={selectedSubCats} /> */}
+                <List catId={catId} maxPrice={maxPrice} sort={sort} subCats={selectedSubCats} />
             </div>
         </div>
     );

@@ -13,12 +13,12 @@ const Navbar = () => {
 
                 <div className="left">
                     <div className="item">
-                        <img src="assets/img/en.png" />
-                        <img src="assets/img/down.png" />
+                        <img src="/assets/img/en.png" />
+                        <img src="/assets/img/down.png" />
                     </div>
                     <div className="item">
                         <span>USD</span>
-                        <img src="assets/img/down.png" />
+                        <img src="/assets/img/down.png" />
                     </div>
                     <div className="item">
                         <Link className="link" to="/products/1">Women</Link>
@@ -49,12 +49,12 @@ const Navbar = () => {
                         <Link className="link" to="/">Stores</Link>
                     </div>
                     <div className="icons">
-                        <img src="assets/img/search.png" />
-                        <img src="assets/img/person.png" />
-                        <img src="assets/img/like.png" />
+                        <img src="/assets/img/search.png" />
+                        <img src="/assets/img/person.png" />
+                        <img src="/assets/img/like.png" />
 
                         <div className="cartIcon">
-                            <img src="assets/img/cart.png" />
+                            <img src="/assets/img/cart.png" />
                             <span>0</span>
                         </div>
 
