@@ -9,18 +9,17 @@ const Card = ({ item }) => {
                 <div className="image">
                     {item.isNew && <span>New Season</span>}
                     <img
-                        src={
-                            item.img
-                        }
+                        src={import.meta.env.VITE_APP_UPLOAD_URL + item?.img?.url}
                         className="mainImg"
                     />
-                    <img
-                        src={
-                            item.img2
-                        }
-                        className="secondImg"
-                    />
+                    {item.img2 && (
+                        <img
+                            src={import.meta.env.VITE_APP_UPLOAD_URL + item?.img2?.url}
+                            className="secondImg"
+                        />
+                    )}
                 </div>
+
                 <h2>{item.title}</h2>
                 <div className="prices">
                     <h3>${item.oldPrice || item.price + 20}</h3>

@@ -1,44 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./FeaturedProducts.scss";
 import Card from "../Card/Card";
 // import useFetch from "../../hooks/useFetch";
+import { useState } from "react";
+import axios from "axios";
 
 const FeaturedProducts = ({ type }) => {
 
-    const data = [
-        {
-            id: 1,
-            img: "/assets/img/01.webp",
-            title: "dress",
-            isNew: true,
-            oldPrice: 16,
-            price: 12
-        },
-        {
-            id: 2,
-            img: "/assets/img/02.webp",
-            title: "hat",
-            isNew: false,
-            oldPrice: 26,
-            price: 18
-        },
-        {
-            id: 3,
-            img: "/assets/img/03.webp",
-            title: "coat",
-            isNew: true,
-            oldPrice: 54,
-            price: 33
-        },
-        {
-            id: 4,
-            img: "/assets/img/04.webp",
-            title: "jeans",
-            isNew: false,
-            oldPrice: 26,
-            price: 20
-        },
-    ];
+    const [data, setData] = useState([])
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(
+                    import.meta.env.VITE_APP_API_URL + "/products?populate=*",
+                    {
+                        headers: { Authorization: "Bearer " + import.meta.env.VITE_APP_API_TOKEN }
+                    }
+                );
+                setData(res.data.data)
+                console.log(res.data.data)
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchData();
+    }, []);
 
     return (
         <div className="featuredProducts">
