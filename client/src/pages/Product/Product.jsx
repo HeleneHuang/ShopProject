@@ -18,14 +18,11 @@ const Product = () => {
     // const dispatch = useDispatch();
     const { data, loading, error } = useFetch(`/products?filters[id][$eq]=${id}&populate=*`);
     // console.log(data?.[0]?.img?.url)
-    console.log(data)
+    // console.log(data)
 
     const product = data?.[0];
 
-    const images = [
-        "/assets/img/hat01.webp",
-        "/assets/img/hat02.webp",
-    ]
+    console.log("selectedImg =", selectedImg);
 
     return (
         <div className="product">
@@ -37,7 +34,7 @@ const Product = () => {
                                 ? import.meta.env.VITE_APP_UPLOAD_URL + product.img.url
                                 : "/assets/img/err.png"
                         }
-                        onClick={() => setSelectedImg("0")}
+                        onClick={e => setSelectedImg("img")}
                     />
                     <img
                         src={
@@ -46,7 +43,7 @@ const Product = () => {
                                 : "/assets/img/err.png"
                         }
 
-                        onClick={e => setSelectedImg("1")}
+                        onClick={e => setSelectedImg("img2")}
                     />
                 </div>
 
