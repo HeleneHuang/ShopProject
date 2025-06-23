@@ -1,22 +1,22 @@
 import React from "react";
 import "./Cart.scss";
 import { useSelector } from "react-redux";
-// import { removeItem, resetCart } from "../../redux/cartReducer";
-// import { useDispatch } from "react-redux";
+import { removeItem, resetCart } from "../../redux/cartReducer";
+import { useDispatch } from "react-redux";
 // import { makeRequest } from "../../makeRequest";
 // import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
     const products = useSelector((state) => state.cart.products);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // const totalPrice = () => {
-    //     let total = 0;
-    //     products.forEach((item) => {
-    //         total += item.quantity * item.price;
-    //     });
-    //     return total.toFixed(2);
-    // };
+    const totalPrice = () => {
+        let total = 0;
+        products.forEach((item) => {
+            total += item.quantity * item.price;
+        });
+        return total.toFixed(2);
+    };
 
     return (
         <div className="cart">
@@ -34,17 +34,18 @@ const Cart = () => {
                     <img
                         src="/assets/img/delete.png"
                         className="delete"
+                        onClick={() => dispatch(removeItem(item.id))}
                     />
                 </div>
             ))}
 
             <div className="total">
                 <span>SUBTOTAL</span>
-                <span>$test total price</span>
+                <span>${totalPrice()}</span>
             </div>
 
             <div className="foot">
-                <span className="reset">
+                <span className="reset" onClick={() => dispatch(resetCart())}>
                     Reset Cart
                 </span>
                 <button>PROCEED TO CHECKOUT</button>
