@@ -1,35 +1,27 @@
 import React from "react";
 import "./Cart.scss";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { removeItem, resetCart } from "../../redux/cartReducer";
 // import { useDispatch } from "react-redux";
 // import { makeRequest } from "../../makeRequest";
 // import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
-    const data = [
-        {
-            id: 1,
-            img: "/assets/img/01.webp",
-            desc: "test desc",
-            title: "dress",
-            isNew: true,
-            oldPrice: 16,
-            price: 12
-        },
-        {
-            id: 2,
-            img: "/assets/img/02.webp",
-            title: "hat",
-            desc: "test desc",
-            isNew: false,
-            oldPrice: 26,
-            price: 18
-        },]
+    const products = useSelector((state) => state.cart.products);
+    // const dispatch = useDispatch();
+
+    // const totalPrice = () => {
+    //     let total = 0;
+    //     products.forEach((item) => {
+    //         total += item.quantity * item.price;
+    //     });
+    //     return total.toFixed(2);
+    // };
+
     return (
         <div className="cart">
             <h1>Products in your cart</h1>
-            {data.map((item) => (
+            {products?.map((item) => (
                 <div className="item" key={item.id}>
                     <img src={item.img} alt="" />
                     <div className="details">

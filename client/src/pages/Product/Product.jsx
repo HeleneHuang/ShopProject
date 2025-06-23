@@ -1,28 +1,23 @@
-import React from "react";
 import { useState } from "react";
 import "./Product.scss";
-// import BalanceIcon from "@mui/icons-material/Balance";
 import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { addToCart } from "../../redux/cartReducer";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartReducer";
 
 const Product = () => {
     const id = useParams().id;
     // console.log("id= " + id)
 
     const [selectedImg, setSelectedImg] = useState("img");
-
     const [quantity, setQuantity] = useState(1);
 
-    // const dispatch = useDispatch();
     const { data, loading, error } = useFetch(`/products?filters[id][$eq]=${id}&populate=*`);
     // console.log(data?.[0]?.img?.url)
     // console.log(data)
-
     const product = data?.[0];
 
-    // console.log("selectedImg =", selectedImg);
+    const dispatch = useDispatch();
 
     return (
         <div className="product">
@@ -70,7 +65,14 @@ const Product = () => {
                         <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
                     </div>
 
-                    <button className="add">
+                    <button className="add" onClick={() => dispatch(addToCart({
+                        id: product.id,
+                        title: product.title,
+                        desc: product.desc,
+                        price: product.price,
+                        img: import.meta.env.VITE_APP_UPLOAD_URL + product.img.url,
+                        quantity
+                    }))}>
                         <img src="/assets/img/cart0.png" className="icon" /> ADD TO CART
                     </button>
                     <div className="links">
