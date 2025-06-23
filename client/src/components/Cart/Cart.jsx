@@ -34,7 +34,6 @@ const Cart = () => {
                     <img
                         src="/assets/img/delete.png"
                         className="delete"
-
                     />
                 </div>
             ))}
