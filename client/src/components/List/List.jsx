@@ -1,4 +1,3 @@
-import React from 'react'
 import "./List.scss"
 import Card from "../Card/Card"
 import useFetch from "../../hooks/useFetch";
