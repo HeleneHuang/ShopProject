@@ -2,18 +2,25 @@ import React from "react";
 import { useState } from "react";
 import "./Product.scss";
 // import BalanceIcon from "@mui/icons-material/Balance";
-// import useFetch from "../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 // import { addToCart } from "../../redux/cartReducer";
 
 const Product = () => {
     const id = useParams().id;
-    const [selectedImg, setSelectedImg] = useState("0");
+    // console.log("id= " + id)
+
+    const [selectedImg, setSelectedImg] = useState("img");
+
     const [quantity, setQuantity] = useState(1);
 
     // const dispatch = useDispatch();
-    // const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
+    const { data, loading, error } = useFetch(`/products?filters[id][$eq]=${id}&populate=*`);
+    // console.log(data?.[0]?.img?.url)
+    console.log(data)
+
+    const product = data?.[0];
 
     const images = [
         "/assets/img/hat01.webp",
@@ -22,20 +29,23 @@ const Product = () => {
 
     return (
         <div className="product">
-            <div className="left">
+            {loading ? "loading" : (<><div className="left">
                 <div className="images">
                     <img
                         src={
-                            images[0]
+                            product?.img?.url
+                                ? import.meta.env.VITE_APP_UPLOAD_URL + product.img.url
+                                : "/assets/img/err.png"
                         }
-                        alt=""
-                        onClick={e => setSelectedImg("0")}
+                        onClick={() => setSelectedImg("0")}
                     />
                     <img
                         src={
-                            images[1]
+                            product?.img2?.url
+                                ? import.meta.env.VITE_APP_UPLOAD_URL + product.img2.url
+                                : "/assets/img/err.png"
                         }
-                        alt=""
+
                         onClick={e => setSelectedImg("1")}
                     />
                 </div>
@@ -43,52 +53,53 @@ const Product = () => {
                 <div className="mainImg">
                     <img
                         src={
-                            images[selectedImg]
-                        }
-                        alt="" />
+                            product?.[selectedImg]?.url
+                                ? import.meta.env.VITE_APP_UPLOAD_URL + product[selectedImg].url
+                                : "/assets/img/err.png"
+                        } />
                 </div>
             </div>
 
-            <div className="right">
-                <h1>test title</h1>
-                <span className="price">test price</span>
-                <p>test sort</p>
-                <div className="quantity">
-                    <button
-                        onClick={() =>
-                            setQuantity((prev) => (prev === 1 ? 1 : prev - 1))
-                        }
-                    >
+                <div className="right">
+                    <h1>test title</h1>
+                    <span className="price">test price</span>
+                    <p>test sort</p>
+                    <div className="quantity">
+                        <button
+                            onClick={() =>
+                                setQuantity((prev) => (prev === 1 ? 1 : prev - 1))
+                            }
+                        >
 
+                        </button>
+                        {quantity}
+                        <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
+                    </div>
+                    <button className="add">
+                        <img src="/assets/img/cart0.png" className="icon" /> ADD TO CART
                     </button>
-                    {quantity}
-                    <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
-                </div>
-                <button className="add">
-                    <img src="/assets/img/cart0.png" className="icon" /> ADD TO CART
-                </button>
-                <div className="links">
-                    <div className="item">
-                        <img src="/assets/img/like.png" className="icon" /> ADD TO WISH LIST
+                    <div className="links">
+                        <div className="item">
+                            <img src="/assets/img/like.png" className="icon" /> ADD TO WISH LIST
+                        </div>
+                        <div className="item">
+                            <img src="/assets/img/compare.png" className="icon" /> ADD TO COMPARE
+                        </div>
                     </div>
-                    <div className="item">
-                        <img src="/assets/img/compare.png" className="icon" /> ADD TO COMPARE
+                    <div className="infoTop">
+                        <span>Vendor: Polo</span>
+                        <span>Product Type: T-Shirt</span>
+                        <span>Tag: T-Shirt, Women, Top</span>
                     </div>
-                </div>
-                <div className="infoTop">
-                    <span>Vendor: Polo</span>
-                    <span>Product Type: T-Shirt</span>
-                    <span>Tag: T-Shirt, Women, Top</span>
-                </div>
-                <hr />
-                <div className="infoBottom">
-                    <span>DESCRIPTION</span>
                     <hr />
-                    <span>ADDITIONAL INFORMATION</span>
-                    <hr />
-                    <span>FAQ</span>
-                </div>
-            </div>
+                    <div className="infoBottom">
+                        <span>DESCRIPTION</span>
+                        <hr />
+                        <span>ADDITIONAL INFORMATION</span>
+                        <hr />
+                        <span>FAQ</span>
+                    </div>
+                </div></>)}
         </div>
     )
 };
