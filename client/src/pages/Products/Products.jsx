@@ -10,7 +10,7 @@ const Products = () => {
     // console.log("catId: ", catId);
 
     const [maxPrice, setMaxPrice] = useState(500);
-    const [sort, setSort] = useState(null);
+    const [sort, setSort] = useState("asc");
     const [selectedSubCats, setSelectedSubCats] = useState([]);
 
     const { data, loading, error } = useFetch(
