@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Navbar.scss"
 import Cart from "../Cart/Cart";
@@ -7,7 +7,7 @@ import useFetch from "../../hooks/useFetch";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
-    // const products = useSelector((state) => state.cart.products);
+    const products = useSelector((state) => state.cart.products);
 
     const { data: categories } = useFetch('/categories');
 
@@ -58,7 +58,7 @@ const Navbar = () => {
 
                         <div className="cartIcon" onClick={() => setOpen(!open)}>
                             <img src="/assets/img/cart.png" />
-                            <span>0</span>
+                            <span>{products.length}</span>
                         </div>
 
                     </div>
