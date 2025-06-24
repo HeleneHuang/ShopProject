@@ -15,7 +15,6 @@ const Products = () => {
 
     const { data, loading, error } = useFetch(
         `/sub-categories?[filters][categories][$eq]=${catId}`
-        // `/sub-categories`
     );
     // console.log(data)
 

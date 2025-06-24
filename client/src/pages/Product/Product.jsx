@@ -17,6 +17,9 @@ const Product = () => {
     // console.log(data)
     const product = data?.[0];
 
+    console.log("🧩 当前 URL 中的 id:", id);
+    console.log("📦 查到的商品数据:", product);
+
     const dispatch = useDispatch();
 
     return (

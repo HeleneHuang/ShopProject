@@ -1,10 +1,9 @@
-import React from "react";
 import "./Cart.scss";
 import { useSelector } from "react-redux";
 import { removeItem, resetCart } from "../../redux/cartReducer";
 import { useDispatch } from "react-redux";
-// import { makeRequest } from "../../makeRequest";
-// import { loadStripe } from "@stripe/stripe-js";
+import { makeRequest } from "../../makeRequest";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
     const products = useSelector((state) => state.cart.products);
@@ -16,6 +15,31 @@ const Cart = () => {
             total += item.quantity * item.price;
         });
         return total.toFixed(2);
+    };
+
+    const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
+    const handlePayment = async () => {
+        try {
+            const stripe = await stripePromise;
+
+            // simplify the data, only keep the id and quantity 
+            const minimalProducts = products.map(p => ({
+                id: p.id,
+                quantity: p.quantity || 1,  // fallback
+            }));
+            console.log("Sending products to backend:", minimalProducts);
+
+            const res = await makeRequest.post("/orders", {
+                products,
+            });
+            await stripe.redirectToCheckout({
+                sessionId: res.data.stripeSession.id,
+            });
+
+        } catch (err) {
+            console.error("Stripe Error:", err.response?.data || err.message);
+        }
     };
 
     return (
@@ -48,7 +72,7 @@ const Cart = () => {
                 <span className="reset" onClick={() => dispatch(resetCart())}>
                     Reset Cart
                 </span>
-                <button>PROCEED TO CHECKOUT</button>
+                <button onClick={handlePayment}>PROCEED TO CHECKOUT</button>
             </div>
         </div >
     )
